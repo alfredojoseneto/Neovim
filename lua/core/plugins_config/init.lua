@@ -8,4 +8,4 @@ require("core.plugins_config.treesitter")
 require("core.plugins_config.treesitter-context")
 require("core.plugins_config.comment")
 require("core.plugins_config.autopairs")
-
+require("core.plugins_config.lsp")

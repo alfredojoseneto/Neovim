@@ -68,31 +68,39 @@ return require('packer').startup(function(use)
     require = { 'nvim-treesitter/nvim-treesitter' }
   }
 
+  -- Utilities
+  use {'moll/vim-bbye'}
+
   -- Plugin to comment lines properly
   use {
     'numToStr/Comment.nvim',
         require = { 'JoosepAlviste/nvim-ts-context-commentstring' }
   }
 
-  -- LSP
-  -- LSP Support
-  use{
-    'williamboman/mason.nvim',
-    requires = {
-      {'neovim/nvim-lspconfig'},             -- Required
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},         -- Required
-      {'hrsh7th/cmp-nvim-lsp'},     -- Required
-      {'hrsh7th/cmp-buffer'},       -- Optional
-      {'hrsh7th/cmp-path'},         -- Optional
-      {'saadparwaiz1/cmp_luasnip'}, -- Optional
-      {'hrsh7th/cmp-nvim-lua'},     -- Optional
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},             -- Required
-    }
+  -- LSP support
+  use {'williamboman/mason.nvim'}
+  use {'williamboman/mason-lspconfig.nvim'}
+  use {
+    'neovim/nvim-lspconfig',
+    config = function() pcall(require, 'plugins.lsp') end,
   }
 
+  -- Autocomplete
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function() pcall(require, 'plugins.nvim-cmp') end,
+  }
+  use {'hrsh7th/cmp-buffer'}
+  use {'hrsh7th/cmp-path'}
+  use {'saadparwaiz1/cmp_luasnip'}
+  use {'hrsh7th/cmp-nvim-lsp'}
+
+  -- Snippets
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function() pcall(require, 'plugins.luasnip') end,
+  }
+  use {'rafamadriz/friendly-snippets' }
 
   -- Put this at the end after all plugins
   if packer_bootstrap then

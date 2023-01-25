@@ -42,7 +42,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 keymap("n", "<leader>h", ":noh<CR>", opts)
 
--- Close buffers
+-- Close buffers: necessário o vim-bbye plugin
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Better paste

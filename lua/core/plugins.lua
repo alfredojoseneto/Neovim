@@ -42,6 +42,9 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Send REPL to Window
+  use { "karoliskoncevicius/vim-sendtowindow" } 
+
   -- Autopairs
   use { "windwp/nvim-autopairs" }
 
@@ -69,6 +72,7 @@ return require('packer').startup(function(use)
       run = function()
       vim.fn["mkdp#util#install"]() end,
   })
+
   use({ "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
     setup = function()

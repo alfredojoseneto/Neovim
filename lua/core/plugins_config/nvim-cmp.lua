@@ -4,6 +4,7 @@
 -- See :help luasnip-loaders
 require('luasnip.loaders.from_vscode').lazy_load()
 
+
 -- nvim-cmp (autocomplete)
 ---
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
@@ -76,7 +77,8 @@ cmp.setup({
     end,
   },
 
-  -- See :help cmp-mapping
+-- See :help cmp-mapping
+--
 mapping = {
     ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
     ['<Down>'] = cmp.mapping.select_next_item(select_opts),
@@ -110,11 +112,11 @@ mapping = {
       if cmp.visible() then
         cmp.select_next_item(select_opts)
       elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			elseif check_backspace() then
-				fallback()
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
       else
         fallback()
       end
@@ -124,7 +126,7 @@ mapping = {
       if cmp.visible() then
         cmp.select_prev_item(select_opts)
       elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
+        luasnip.jump(-1)
       else
         fallback()
       end

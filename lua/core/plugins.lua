@@ -21,6 +21,9 @@ return require('packer').startup(function(use)
   -- Colorschemes
   use { "folke/tokyonight.nvim" }
 
+  -- Identline
+  use { "lukas-reineke/indent-blankline.nvim" }
+
   -- Nvim Tree
   use { 'nvim-tree/nvim-tree.lua',
     requires = {'nvim-tree/nvim-web-devicons'} , -- optional, for file icons
@@ -29,6 +32,14 @@ return require('packer').startup(function(use)
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  -- Toggleterm
+  use { "akinsho/toggleterm.nvim" ,
+    tag = '*',
+    config = function()
+      require("toggleterm").setup()
+    end
   }
 
   -- Autopairs
@@ -43,6 +54,13 @@ return require('packer').startup(function(use)
   use {'akinsho/bufferline.nvim', tag = "v3.*",
     requires = { 'nvim-tree/nvim-web-devicons' }
   }
+
+  -- GitSigns
+  use { 'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+}
 
   -- Alpha Dashboard
   use { 'goolord/alpha-nvim',
@@ -68,8 +86,12 @@ return require('packer').startup(function(use)
     require = { 'nvim-treesitter/nvim-treesitter' }
   }
 
+  -- Illuminate
+  use { 'RRethy/vim-illuminate' }
+
   -- Utilities
-  use {'moll/vim-bbye'}
+  use { 'moll/vim-bbye' }
+  use { 'tpope/vim-surround' }
 
   -- Plugin to comment lines properly
   use {

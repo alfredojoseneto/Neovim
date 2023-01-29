@@ -129,7 +129,7 @@ end
 -- See :help mason-lspconfig-dynamic-server-setup
 require('mason-lspconfig').setup_handlers({
   default_handler,
-    ['sumneko_lua'] = function()
-    require('core.plugins_config.lsp.sumneko_lua')
-  end
+  --   ['sumneko_lua'] = function()
+  --   require('core.plugins_config.lsp.sumneko_lua')
+  -- end
 })

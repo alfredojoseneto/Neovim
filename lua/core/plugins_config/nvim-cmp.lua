@@ -19,6 +19,12 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+-- Open and close parenthersis after confirm
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 -- See :help cmp-config
 cmp.setup({
   snippet = {
@@ -91,7 +97,7 @@ mapping = {
 
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({select = false}),
-
+    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-d>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)

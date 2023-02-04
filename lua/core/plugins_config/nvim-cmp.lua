@@ -2,7 +2,7 @@
 -- Luasnip (snippet engine)
 ---
 -- See :help luasnip-loaders
-require('luasnip.loaders.from_vscode').lazy_load()
+local luasnip_vscode = require('luasnip.loaders.from_vscode').lazy_load()
 
 
 -- nvim-cmp (autocomplete)
@@ -37,6 +37,7 @@ cmp.setup({
     {name = 'nvim_lsp', keyword_length = 3},
     {name = 'buffer', keyword_length = 3},
     {name = 'luasnip', keyword_length = 2},
+    {name = 'luasnip_vscode', keyword_length = 2},
   },
   window = {
     completion = cmp.config.window.bordered(),

@@ -6,6 +6,9 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
+-- Remap Ctrl+Z to do nothing
+keymap("", "<C-z>", "<Nop>", opts)
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "

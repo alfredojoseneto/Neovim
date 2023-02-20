@@ -13,10 +13,10 @@ keymap("", "<C-z>", "<Nop>", opts)
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
--- Reload configs
+-- Reload config
 keymap("n","<leader>r","<cmd>luafile%<CR>", opts)
 
--- Modes
+-- Mode
 --   normal_mode = "n",
 --   insert_mode = "i",
 --   visual_mode = "v",
@@ -31,19 +31,23 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
--- Resize with arrows
+-- Resize with arrow
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
+-- Navigate buffer
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Clear highlights
--- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
-keymap("n", "<leader>h", ":noh<CR>", opts)
+
+-- Removing ending whitespace
+keymap("n", "<leader>tt", "<cmd>%s/\\s\\+$/<CR>")
+
+-- Clear highlight
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+-- keymap("n", "<leader>h", "<cmd>noh<CR>", opts)
 
 -- Close buffers: necessário o vim-bbye plugin
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)

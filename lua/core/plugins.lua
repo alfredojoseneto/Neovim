@@ -117,6 +117,9 @@ return require('packer').startup(function(use)
         require = { 'JoosepAlviste/nvim-ts-context-commentstring' }
   }
 
+  -- Colorize css and html colors
+  use { 'norcalli/nvim-colorizer.lua' }
+
   -- LSP support
   use {'williamboman/mason.nvim'}
   use {'williamboman/mason-lspconfig.nvim'}

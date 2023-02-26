@@ -46,7 +46,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<leader>tt", "<cmd>%s/\\s\\+$/<CR>")
 
 -- Clear highlight
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<leader>hh", "<cmd>nohlsearch<CR>", opts)
 -- keymap("n", "<leader>h", "<cmd>noh<CR>", opts)
 
 -- Close buffers: necessário o vim-bbye plugin

@@ -27,7 +27,9 @@ return {
 				}), -- js/ts formatter
 				formatting.stylua, -- lua formatter
 				formatting.black, -- python formatter
+				formatting.djlint, -- python django
 				diagnostics.flake8, -- python linter
+				diagnostics.djlint, -- python django linter
 				diagnostics.eslint_d.with({ -- js/ts linter
 					condition = function(utils)
 						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs

@@ -94,6 +94,21 @@ return {
 			on_attach = on_attach,
 		})
 
+		-- configure lua for awesome-wm code completition
+		lspconfig["lua_ls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				Lua = {
+					workspace = {
+						library = {
+							["$HOME/.config/nvim/lua/awesome-code-doc"] = true,
+						},
+					},
+				},
+			},
+		})
+
 		-- configure svelte server
 		-- lspconfig["svelte"].setup({
 		--   capabilities = capabilities,

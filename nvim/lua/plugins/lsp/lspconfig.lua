@@ -60,7 +60,8 @@ return {
 		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		-- local capabilities = cmp_nvim_lsp.default_capabilities()
+		local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
@@ -92,21 +93,6 @@ return {
 		lspconfig["tailwindcss"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-		})
-
-		-- configure lua for awesome-wm code completition
-		lspconfig["lua_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {
-				Lua = {
-					workspace = {
-						library = {
-							["$HOME/.config/nvim/lua/awesome-code-doc"] = true,
-						},
-					},
-				},
-			},
 		})
 
 		-- configure svelte server
@@ -150,8 +136,62 @@ return {
 		lspconfig["pyright"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			filetypes = { "python" },
 		})
 
+		-- Find python path if switch on virtual env
+		-- local function get_python_path(workspace)
+		-- 	-- Use activated virtualenv.
+		-- 	if vim.env.VIRTUAL_ENV then
+		-- 		return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+		-- 	end
+		--
+		-- 	-- Find and use virtualenv via poetry in workspace directory.
+		-- 	local match = vim.fn.glob(path.join(workspace, "poetry.lock"))
+		-- 	if match ~= "" then
+		-- 		local venv = vim.fn.trim(vim.fn.system("poetry env info -p"))
+		-- 		return path.join(venv, "bin", "python")
+		-- 	end
+		--
+		-- 	-- Fallback to system Python.
+		-- 	return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+		-- end
+
+		-- configure python server
+		-- lspconfig["pylsp"].setup({
+		-- on_init = function(client)
+		-- 	local pythonPath = get_python_path(client.config.root_dir)
+		-- 	client.config.settings.python.pythonPath = pythonPath
+		-- end,
+		-- 	on_attach = on_attach,
+		-- 	capabilities = capabilities,
+		-- 	filetypes = { "python" },
+		-- 	settings = {
+		-- 		pylsp = {
+		-- 			plugins = {
+		-- 				pycodestyle = { enabled = false },
+		-- 				flake8 = { enabled = false, maxLineLength = 120, ignore = { "E501,F401" } },
+		-- 				pyflakes = { enabled = false, maxLineLength = 120 },
+		-- 				ruff = { enabled = false },
+		-- 				mccabe = { enabled = true },
+		-- 				pylint = { enabled = false },
+		-- 				jedi_signature_help = { enabled = true },
+		-- 				jedi_completion = {
+		-- 					include_params = true,
+		-- 					fuzzy = true,
+		-- 				},
+		-- 				-- jedi = {
+		-- 				-- 	extra_paths = {
+		-- 				-- 		"<home_dir>/.local/lib/python3.10/",
+		-- 				-- 		"/usr/lib/python3.11/site-packages/",
+		-- 				-- 	},
+		-- 				-- },
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+
+		-- configure lua for awesome-wm code completition
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
@@ -167,6 +207,7 @@ return {
 						library = {
 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 							[vim.fn.stdpath("config") .. "/lua"] = true,
+							["$HOME/.config/nvim/lua/awesome-code-doc"] = true,
 						},
 					},
 				},

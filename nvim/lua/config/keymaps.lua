@@ -41,7 +41,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear highlights
 
-keymap("n", "<leader>h", ":noh<CR>", opts)
+-- keymap({ "n", "v" }, "<S>hh", "<cmd>noh<CR>", opts)
 
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>bdelete!<CR><cmd>:bnext<CR>", opts)

@@ -6,3 +6,9 @@ sudo apt install -y
 ripgrep
 fd
 npm \
+
+#### Improvements
+
+- [ ] Replace null-ls for another lsp plugin
+- [ ] Change formatter
+- [ ] Change linter

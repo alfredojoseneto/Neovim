@@ -22,6 +22,8 @@ return {
 			sources = {
 				--  to disable file types use
 				--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
+				--  disable virtual_text on diagnostic
+				vim.diagnostic.config({ virtual_text = false }),
 				formatting.prettier.with({
 					-- extra_filetypes = { "svelte" },
 				}), -- js/ts formatter

@@ -69,6 +69,7 @@ return {
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			-- vim.fn.sign_define(hl, { text = icon, texthl = nil, numhl = "" })
 		end
 
 		-- configure html server
@@ -81,6 +82,11 @@ return {
 		lspconfig["tsserver"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			filetypes = {
+				"html",
+				"django-html",
+				"htmldjango",
+			},
 		})
 
 		-- configure css server
@@ -129,7 +135,18 @@ return {
 		lspconfig["emmet_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+			filetypes = {
+				"html",
+				"htmldjango",
+				"django-html",
+				"typescriptreact",
+				"javascriptreact",
+				"css",
+				"sass",
+				"scss",
+				"less",
+				"svelte",
+			},
 		})
 
 		-- configure python server

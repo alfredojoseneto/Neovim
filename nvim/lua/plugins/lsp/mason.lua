@@ -2,7 +2,7 @@ return {
 	"williamboman/mason.nvim",
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
-		"jose-elias-alvarez/null-ls.nvim",
+		-- "jose-elias-alvarez/null-ls.nvim",
 		-- "jayp0521/mason-null-ls.nvim",
 		"jay-babu/mason-null-ls.nvim",
 		"neovim/nvim-lspconfig",

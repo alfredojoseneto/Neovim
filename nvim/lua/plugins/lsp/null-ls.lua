@@ -20,13 +20,15 @@ return {
 			root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
 			-- setup formatters & linters
 			sources = {
-				--  to disable file types use
-				--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
 				--  disable virtual_text on diagnostic
 				vim.diagnostic.config({ virtual_text = false }),
+
+				--  to disable file types use
+				--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
 				formatting.prettier.with({
-					-- extra_filetypes = { "svelte" },
+					extra_filetypes = { "svelte", "html", "htmldjango" },
 				}), -- js/ts formatter
+
 				formatting.stylua, -- lua formatter
 				formatting.black, -- python formatter
 				formatting.djlint, -- python django
@@ -47,6 +49,7 @@ return {
 						buffer = bufnr,
 						callback = function()
 							vim.lsp.buf.format({
+                async = false,
 								filter = function(client)
 									--  only use null-ls for formatting instead of lsp server
 									return client.name == "null-ls"

@@ -78,6 +78,7 @@ return {
 			on_attach = on_attach,
 		})
 
+
 		-- configure typescript server with plugin
 		lspconfig["tsserver"].setup({
 			capabilities = capabilities,
@@ -87,6 +88,15 @@ return {
 				"django-html",
 				"htmldjango",
 			},
+      cmd = { "typescript-language-server", "--stdio" },
+      init_options = {
+        userLanguages = {
+          html = "html",
+          htmldjango = "html"
+          -- eelixir = "html-eex",
+          -- eruby = "erb"
+        }
+      }
 		})
 
 		-- configure css server
@@ -99,6 +109,47 @@ return {
 		lspconfig["tailwindcss"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			filetypes = {
+				"html",
+				"htmldjango",
+				"django-html",
+				"typescriptreact",
+				"javascriptreact",
+				"css",
+				"sass",
+				"scss",
+				"less",
+				"svelte",
+			},
+      cmd = { "tailwindcss-language-server", "--stdio" },
+      init_options = {
+        userLanguages = {
+          html = "html",
+          htmldjango = "html"
+          -- eelixir = "html-eex",
+          -- eruby = "erb"
+        }
+      },
+      settings = {
+        tailwindCSS = {
+          classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+          lint = {
+            cssConflict = "warning",
+            invalidApply = "error",
+            invalidConfigPath = "error",
+            invalidScreen = "error",
+            invalidTailwindDirective = "error",
+            invalidVariant = "error",
+            recommendedVariantOrder = "warning"
+          },
+          validate = true
+        }
+      },
+      root_dir = lspconfig.util.root_pattern(
+        'tailwind.config.js',
+        'tailwind.config.cjs', 'tailwind.config.mjs', 'tailwind.config.ts',
+        'postcss.config.js', 'postcss.config.cjs', 'postcss.config.mjs',
+        'postcss.config.ts', 'package.json', 'node_modules', '.git')
 		})
 
 		-- configure svelte server
@@ -147,6 +198,14 @@ return {
 				"less",
 				"svelte",
 			},
+      init_options = {
+        userLanguages = {
+          html = "html",
+          htmldjango = "html"
+          -- eelixir = "html-eex",
+          -- eruby = "erb"
+        }
+      }
 		})
 
 		-- configure python server
@@ -155,58 +214,6 @@ return {
 			on_attach = on_attach,
 			filetypes = { "python" },
 		})
-
-		-- Find python path if switch on virtual env
-		-- local function get_python_path(workspace)
-		-- 	-- Use activated virtualenv.
-		-- 	if vim.env.VIRTUAL_ENV then
-		-- 		return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-		-- 	end
-		--
-		-- 	-- Find and use virtualenv via poetry in workspace directory.
-		-- 	local match = vim.fn.glob(path.join(workspace, "poetry.lock"))
-		-- 	if match ~= "" then
-		-- 		local venv = vim.fn.trim(vim.fn.system("poetry env info -p"))
-		-- 		return path.join(venv, "bin", "python")
-		-- 	end
-		--
-		-- 	-- Fallback to system Python.
-		-- 	return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
-		-- end
-
-		-- configure python server
-		-- lspconfig["pylsp"].setup({
-		-- on_init = function(client)
-		-- 	local pythonPath = get_python_path(client.config.root_dir)
-		-- 	client.config.settings.python.pythonPath = pythonPath
-		-- end,
-		-- 	on_attach = on_attach,
-		-- 	capabilities = capabilities,
-		-- 	filetypes = { "python" },
-		-- 	settings = {
-		-- 		pylsp = {
-		-- 			plugins = {
-		-- 				pycodestyle = { enabled = false },
-		-- 				flake8 = { enabled = false, maxLineLength = 120, ignore = { "E501,F401" } },
-		-- 				pyflakes = { enabled = false, maxLineLength = 120 },
-		-- 				ruff = { enabled = false },
-		-- 				mccabe = { enabled = true },
-		-- 				pylint = { enabled = false },
-		-- 				jedi_signature_help = { enabled = true },
-		-- 				jedi_completion = {
-		-- 					include_params = true,
-		-- 					fuzzy = true,
-		-- 				},
-		-- 				-- jedi = {
-		-- 				-- 	extra_paths = {
-		-- 				-- 		"<home_dir>/.local/lib/python3.10/",
-		-- 				-- 		"/usr/lib/python3.11/site-packages/",
-		-- 				-- 	},
-		-- 				-- },
-		-- 			},
-		-- 		},
-		-- 	},
-		-- })
 
 		-- configure lua for awesome-wm code completition
 		-- configure lua server (with special settings)

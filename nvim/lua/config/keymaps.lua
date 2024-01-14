@@ -45,6 +45,9 @@ keymap("n", "<leader>h", "<cmd>noh<CR>", opts)
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>bdelete!<CR><cmd>:bnext<CR>", opts)
 
+-- Better save
+keymap("n", "<C-s>", "<cmd>w!<CR>", opts)
+
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
